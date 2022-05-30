@@ -1,12 +1,13 @@
 import * as exercises from './exercises_model.mjs';
 import express from 'express';
 
+const cors = require("cors");
 const PORT = 3000;
 
 const app = express();
 
 app.use(express.json());
-
+app.use(cors());
 /**
  * Create a new exercise with name, reps, weight, unit, date provided in the body
  */
