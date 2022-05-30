@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 
 // Prepare to the database exercises_db in the MongoDB server running locally on port 27017
 mongoose.connect(
-    "mongodb+srv://ayouyi:Zzy@19891020@cluster0.dogohuu.mongodb.net/?retryWrites=true&w=majority",
+    "mongodb+srv://ayouyi:Zzy19891020@cluster0.dogohuu.mongodb.net/?retryWrites=true&w=majority",
     { useNewUrlParser: true, useUnifiedTopology: true }
 );
 
