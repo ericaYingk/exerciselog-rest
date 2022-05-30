@@ -5,9 +5,12 @@ const cors = require("cors");
 const PORT = 3000;
 
 const app = express();
+const corsOptions = {
+    origin: 'https://coruscating-rabanadas-0fbe30.netlify.app',
+    credentials: true,
+};
+app.use(cors(corsOptions));
 
-app.use(express.json());
-app.use(cors());
 /**
  * Create a new exercise with name, reps, weight, unit, date provided in the body
  */
