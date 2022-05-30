@@ -1,7 +1,7 @@
 import * as exercises from './exercises_model.mjs';
 import express from 'express';
 
-const PORT = 80;
+const PORT = 3000;
 
 const app = express();
 
@@ -77,6 +77,6 @@ app.delete('/exercises/:_id', (req, res) => {
         })
 });
 
-app.listen(PORT, () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log(`Server listening on port ${PORT}...`);
 });
