@@ -1,7 +1,7 @@
 import * as exercises from './exercises_model.mjs';
 import express from 'express';
 
-const PORT = 3000;
+const PORT = 80;
 
 const app = express();
 
