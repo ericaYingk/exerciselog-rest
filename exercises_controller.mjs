@@ -1,4 +1,4 @@
-import * as exercises from './exercises_model.mjs';
+import * as exercises from './exercises_model';
 import express from 'express';
 
 const PORT = 3000;
