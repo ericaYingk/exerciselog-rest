@@ -1,15 +1,11 @@
 import * as exercises from './exercises_model.mjs';
 import express from 'express';
 
-const cors = require("cors");
 const PORT = 3000;
 
 const app = express();
-const corsOptions = {
-    origin: 'https://coruscating-rabanadas-0fbe30.netlify.app',
-    credentials: true,
-};
-app.use(cors(corsOptions));
+
+app.use(express.json());
 
 /**
  * Create a new exercise with name, reps, weight, unit, date provided in the body
@@ -21,7 +17,7 @@ app.post('/exercises', (req, res) => {
         })
         .catch(error => {
             console.error(error);
-            res.status(500).json({ Error: 'Request failed' });
+            res.status(400).json({ Error: 'Request failed' });
         });
 });
 
@@ -29,6 +25,7 @@ app.post('/exercises', (req, res) => {
 /**
  * Retrive all exercises 
  */
+app.get('/', (req, res) => { res.send('Hello from Express!')});
 app.get('/exercises', (req, res) => {
     let filter ={};
     exercises.findExcercises(filter, '', 0)
@@ -37,7 +34,7 @@ app.get('/exercises', (req, res) => {
         })
         .catch(error => {
             console.error(error)
-            res.status(500).json({ Error: 'Request failed' });
+            res.status(400).json({ Error: 'Request failed' });
     })
     
 });
@@ -50,16 +47,11 @@ app.get('/exercises', (req, res) => {
 app.put('/exercises/:_id', (req, res) => {
     exercises.replaceExercise(req.params._id, req.body.name, req.body.reps, req.body.weight, req.body.unit, req.body.date)
         .then(numUpdated => {
-            if (numUpdated === 1) {
-                res.status(200).json({_id:req.params._id, name:req.body.name, reps:req.body.reps, weight:req.body.weight, unit:req.body.unit, date:req.body.date});
-            } else {
-                res.status(500).json({ Error: "Reource not found" });
-            }
-            
+            res.status(200).json({_id:req.params._id, name:req.body.name, reps:req.body.reps, weight:req.body.weight, unit:req.body.unit, date:req.body.date})
         })
         .catch(error => {
             console.error(error)
-            res.status(500).json({ Error: 'Request failed' });
+            res.status(400).json({ Error: 'Request failed' });
         })
 });
 
@@ -69,15 +61,11 @@ app.put('/exercises/:_id', (req, res) => {
 app.delete('/exercises/:_id', (req, res) => {
     exercises.deleteById(req.params._id)
         .then(deletedCount => {
-            if (deletedCount === 1) {
-                res.status(204).send();
-            } else{
-                res.status(500).json({ Error: 'Resource not found' });
-            }
+            res.status(204).send();
         })
         .catch(error => {
             console.error(error);
-            res.status(500).json({ Error: 'Request failed' });
+            res.status(400).json({ Error: 'Request failed' });
         })
 });
 
