@@ -1,12 +1,17 @@
 import * as exercises from './exercises_model.mjs';
 import express from 'express';
 
-const PORT = 3000;
-
+const PORT = process.env.PORT || 3000;
 const app = express();
 
 app.use(express.json());
 
+const cors = require('cors');
+const corsOptions = {
+    origin: "https://coruscating-rabanadas-0fbe30.netlify.app",
+    credentials: true
+}
+app.use(cors(corsOptions));
 /**
  * Create a new exercise with name, reps, weight, unit, date provided in the body
  */
@@ -69,6 +74,6 @@ app.delete('/exercises/:_id', (req, res) => {
         })
 });
 
-app.listen(process.env.PORT || 3000, () => {
+app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}...`);
 });
