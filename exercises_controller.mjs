@@ -29,7 +29,6 @@ app.post('/exercises', (req, res) => {
  */
 app.get('/', (req, res) => { res.send('Hello from Express!')});
 app.get('/exercises', (req, res) => {
-    response.set('Access-Control-Allow-Origin', '*');
     let filter ={};
     exercises.findExcercises(filter, '', 0)
         .then(exercises => {
